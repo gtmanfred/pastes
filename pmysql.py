@@ -26,7 +26,7 @@ def lookup(pasteid):
 
     try:
         return _db.query((
-            'select paste from {0} where id={1}'
+            'select paste from {0} where id={1};'
         ).format(mysqldb, pasteid))
     except:
         return False
@@ -34,4 +34,4 @@ def lookup(pasteid):
 def post_paste(pasteid, text):
     _db = _get_conn()
 
-    return _db.query('Insert into pastes (id, paste) values ({0}, {1})'.format(pasteid, text))
+    return _db.query('Insert into pastes (id, paste) values ({0}, {1});'.format(pasteid, text))
