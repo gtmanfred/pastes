@@ -16,9 +16,7 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['p']
-    paste_id = ''
-    while not paste_id is False:
-        paste_id = pf.gen_random()
+    paste_id = pf.gen_random()
 
     pmysql.post_paste(paste_id, text)
 
@@ -30,7 +28,7 @@ def get_paste(pasteid):
     text = pmysql.lookup(pasteid)
     if text is False:
         return 'Paste id {0} not found.'.format(pasteid)
-    return text
+    return text.fetch_row()
 
 if __name__ == '__main__':
     app.run()
