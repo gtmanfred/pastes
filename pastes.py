@@ -26,7 +26,7 @@ def my_form_post():
 
 
 @app.route('/<pasteid>', methods=['GET'])
-def my_form_post(pasteid):
+def get_paste(pasteid):
     text = pmysql.lookup(pasteid)
     if text is False:
         return 'Paste id {0} not found.'.format(pasteid)
