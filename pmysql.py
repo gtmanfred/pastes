@@ -3,16 +3,16 @@ import ConfigParser
 
 def _get_conn():
     config = ConfigParser.ConfigParser()
-    cfg = config.read(os.path.expanduser('~/.my.cnf'))
-    mysqluser = cfg.get('client', 'user')
-    mysqlpass = cfg.get('client', 'pass')
+    config.read(os.path.expanduser('~/.my.cnf'))
+    mysqluser = config.get('client', 'user')
+    mysqlpass = config.get('client', 'pass')
     try:
-        mysqlhost = cfg.get('client', 'host')
+        mysqlhost = config.get('client', 'host')
     except:
         mysqlhost = 'localhost'
 
     try:
-        mysqldb = cfg.get('client', 'database')
+        mysqldb = config.get('client', 'database')
     except:
         mysqldb = 'pastes'
 
