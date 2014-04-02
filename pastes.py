@@ -10,7 +10,8 @@ domain = 'localhost'
 
 @app.route('/')
 def my_form():
-    return render_template("my-form.html")
+    return 'Welcome to my pastebin.'
+
 
 @app.route('/', methods=['POST'])
 def my_form_post():
@@ -23,6 +24,13 @@ def my_form_post():
 
     return 'http://{0}/{1}'.format(domain, paste_id)
 
+
+@app.route('/<pasteid>', methods=['GET'])
+def my_form_post(pasteid):
+    text = pmysql.lookup(pasteid)
+    if text is False:
+        return 'Paste id {0} not found.'.format(pasteid)
+    return text
 
 if __name__ == '__main__':
     app.run()

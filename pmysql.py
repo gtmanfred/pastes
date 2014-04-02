@@ -1,5 +1,6 @@
 import _mysql
 import ConfigParser
+import os.path
 
 def _get_conn():
     config = ConfigParser.ConfigParser()
@@ -33,4 +34,4 @@ def lookup(pasteid):
 def post_paste(pasteid, text):
     _db = _get_conn()
 
-    return _db.execute('Insert into pastes (id, paste) values ({0}, {1})'.format(pasteid, text))
+    return _db.query('Insert into pastes (id, paste) values ({0}, {1})'.format(pasteid, text))
