@@ -29,18 +29,15 @@ def lookup(pasteid):
     db = PasteConn()
     _db = db.db
 
-    try:
-        _db.query((
-            "select paste from {0}.pastes where id='{1}';"
-        ).format(db.mysqldb, pasteid))
-        return _db.store_result()
-    except:
-        return False
+    _db.query((
+        "select paste from {0}.pastes where id='{1}';"
+    ).format(db.mysqldb, pasteid))
+    return _db.store_result()
 
 def post_paste(pasteid, text):
     db = PasteConn()
     _db = db.db
     entry = (
         "Insert into {0}.pastes (id, paste) values ('{1}', '{2}');"
-    ).format(db.mysqldb, pasteid, text)
+    ).format(db.mysqldb, pasteid, _mysql.escape_string(text))
     _db.query(entry)
